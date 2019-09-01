@@ -1,0 +1,217 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+
+{% block header %}
+<style>
+
+  
+/*Bootstrap Container Concept*/
+.container {
+    padding-right: 15px;
+    padding-left: 15px;
+    margin-right: auto;
+    margin-left: auto;
+  }
+
+  @media (min-width: 768px) {
+    .container {
+      width: 750px;
+    }
+  }
+
+  @media (min-width: 992px) {
+    .container {
+      width: 970px;
+    }
+  }
+
+  @media (min-width: 1200px) {
+    .container {
+      width: 1170px;
+    }
+  }
+
+  /*Bootstrap container concept-------------------*/
+.card{
+  transition: 0.2s;
+  margin: 1em 0;
+  padding: 1em;
+  font-family: Arial, Helvetica, sans-serif;
+}
+.card:hover{
+  box-shadow: 0 0 5px 0 #ccc;
+}
+.card h2{
+  color: #1a73e8;
+  font-weight: bold;
+}
+</style>
+{% endblock %}
+
+{% block content %}
+
+
+<div class="container">
+  <Br><Br>
+    <h1>Find Best Laboratories near you</h1>
+    <form method="POST" action="{% url 'lab' %}">
+      Sort on basis of: 
+      <select style="padding: 0.3em 2.5em;" id="sort_option" name="sort_option">
+        <option>Rating</option>
+        <option>Price</option>
+        <option>Certified</option>
+        <option>Availability</option>
+      </select>
+      <input type="submit" value="Sort" />
+    </form>
+
+<style>
+
+.card-inner{
+  box-shadow: 0 0 4px 0 #aaa; 
+  padding: 0.3em 1.5em;
+  display: inline-flex;
+  margin: 0.2em 0.5em;
+}
+</style>
+
+  {% for lab in lab %}
+  <div class="card">
+    <h2>{{lab.name}}
+      {% if lab.certified == True %}
+      <span style="font-size: 0.5em;position: relative;top: -5px;color: #999;"> &nbsp;&nbsp;(Certified)</span>
+      {% endif %}
+    </h2>
+    <h6>Location: {{lab.location}}</h6>
+    <h6>Price: {{lab.price}}</h6>
+    <h6>Contact: {{lab.contact}} </h6>
+    <p>
+      Tests Provided by the labs<br>
+      <span class="card-inner"> {{lab.test}} </span>
+    </p>
+    <span>Availability: {{lab.availability}} </span>
+    <span>Timing: {{lab.timing}} </span>
+    <span>Rating: {{lab.rating}}</span>
+
+  </div>
+
+  {% endfor %}
+</div>
+
+
+<Br><Br>
+
+
+<section class="ftco-section ftco-no-pt ftco-no-pb ftco-counter img" id="section-counter" style="background-image: url({% static 'images/bg_3.jpg' %});" data-stellar-background-ratio="0.5">
+  <div class="container">
+      <div class="row">
+          <div class="col-md-6 py-5 pr-md-5">
+        <div class="heading-section heading-section-white ftco-animate mb-5">
+            <span class="subheading">Consultation</span>
+          <h2 class="mb-4">Free Consultation</h2>
+          <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
+        </div>
+        <form action="{% url 'sendmail' %}" method="POST" class="appointment-form ftco-animate">
+                  <div class="d-md-flex">
+                      <div class="form-group">
+                          <input type="text" name="firstname" class="form-control" placeholder="First Name">
+                      </div>
+                      <div class="form-group ml-md-4">
+                          <input type="text" name="lastname" class="form-control" placeholder="Last Name">
+                      </div>
+                  </div>
+                  <div class="d-md-flex">
+                      <div class="form-group">
+                          <div class="form-field">
+                        <div class="select-wrap">
+                <div class="icon"><span class="ion-ios-arrow-down"></span></div>
+                <select name="service" class="form-control">
+                  <option style="color: #666;" value="">Select Your Services</option>
+                  <option style="color: #666;" value="">Neurology</option>
+                  <option style="color: #666;" value="">Cardiology</option>
+                  <option style="color: #666;" value="">Dental</option>
+                  <option style="color: #666;" value="">Ophthalmology</option>
+                  <option style="color: #666;" value="">Other Services</option>
+                </select>
+              </div>
+                </div>
+                      </div>
+                      <div class="form-group ml-md-4">
+                          <input type="text" name="phone" class="form-control" placeholder="Phone">
+                      </div>
+                  </div>
+                  <div class="d-md-flex">
+                      <div class="form-group">
+                          <div class="input-wrap">
+                      <div class="icon"><span class="ion-md-calendar"></span></div>
+                      <input type="text" name="date" class="form-control appointment_date" placeholder="Date">
+                  </div>
+                      </div>
+                      <div class="form-group ml-md-4">
+                          <div class="input-wrap">
+                      <div class="icon"><span class="ion-ios-clock"></span></div>
+                      <input type="text" name="time" class="form-control appointment_time" placeholder="Time">
+                  </div>
+                      </div>
+                  </div>
+                  <div class="d-md-flex">
+                      <div class="form-group">
+                <textarea name="message" id="" cols="30" rows="2" class="form-control" placeholder="Message"></textarea>
+              </div>
+              <div class="form-group ml-md-4">
+                <input type="submit" value="Appointment" class="btn btn-secondary py-3 px-4">
+              </div>
+                  </div>
+              </form>
+          </div>
+          <div class="col-lg-6 p-5 bg-counter aside-stretch">
+                  <h3 class="vr">About Dr.Care Facts</h3>
+              <div class="row pt-4 mt-1">
+            <div class="col-md-6 d-flex justify-content-center counter-wrap ftco-animate">
+              <div class="block-18 p-5 bg-light">
+                <div class="text">
+                  <strong class="number" data-number="30">0</strong>
+                  <span>Years of Experienced</span>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-6 d-flex justify-content-center counter-wrap ftco-animate">
+              <div class="block-18 p-5 bg-light">
+                <div class="text">
+                  <strong class="number" data-number="4500">0</strong>
+                  <span>Happy Patients</span>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-6 d-flex justify-content-center counter-wrap ftco-animate">
+              <div class="block-18 p-5 bg-light">
+                <div class="text">
+                  <strong class="number" data-number="84">0</strong>
+                  <span>Number of Doctors</span>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-6 d-flex justify-content-center counter-wrap ftco-animate">
+              <div class="block-18 p-5 bg-light">
+                <div class="text">
+                  <strong class="number" data-number="300">0</strong>
+                  <span>Number of Staffs</span>
+                </div>
+              </div>
+            </div>
+        </div>
+    </div>
+  </div>
+  </div>
+</section>
+
+
+
+
+
+
+
+{% endblock %}
+
+{% block footer %}
+{% endblock %}
