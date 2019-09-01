@@ -1,0 +1,1 @@
+web: gunicorn hackinit.wsgi --log-file -
