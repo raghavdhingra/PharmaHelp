@@ -13,7 +13,7 @@ psycopg2==2.7.4
 psycopg2-binary==2.7.5
 Pyrebase==3.0.27
 pytz==2019.1
-requests==2.11.1
+requests==2.20.0
 sqlparse==0.3.0
 urllib3==1.25.3
 virtualenv==16.0.0
