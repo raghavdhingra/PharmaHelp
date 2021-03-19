@@ -5,7 +5,7 @@ Django==2.2.4
 django-ckeditor==5.5.0
 django-heroku==0.3.1
 django-rest-framework==0.1.0
-djangorestframework==3.10.1
+djangorestframework==3.11.2
 gunicorn==19.9.0
 pathlib2==2.1.0
 Pillow==6.2.0
